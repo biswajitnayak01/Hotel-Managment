@@ -40,7 +40,7 @@ public String editDeleteRenderUrl() {
 }
 @GetMapping(value = "/deleteroomdetails/{roomid}")
 public String deleteRoomData(@PathVariable("roomid")String roomId) {
-	logger.info("DeleteRoomDetails DeleteRoomDetails:::::::::::"+roomId);
+	logger.info("DeleteRoomDetails DeleteRoomDetails:::::::::::::::"+roomId);
 	return "DeletePage";
 }
 }
