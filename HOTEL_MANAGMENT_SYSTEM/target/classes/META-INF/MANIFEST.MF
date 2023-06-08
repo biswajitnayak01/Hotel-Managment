@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: biswajit.nayak01
+Build-Jdk: 17.0.4.1
+Implementation-Title: HOTEL_MANAGMENT_SYSTEM
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.infosys
+Implementation-URL: https://spring.io/projects/spring-boot/HOTEL_MANAGME
+ NT_SYSTEM
+Created-By: Maven Integration for Eclipse
+
