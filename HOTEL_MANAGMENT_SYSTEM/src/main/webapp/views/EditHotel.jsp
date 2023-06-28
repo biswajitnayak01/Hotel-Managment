@@ -35,7 +35,9 @@ body{
  h1{
  text-align:left
  }
- 
+ #roomid,#rmo,#dateto,#datefrom,#fromDate,#toDate{/* 21/06/2023 */
+ display:none;
+ }
  #adddata{
 position:absolute;
 bottom:1px;
@@ -56,16 +58,6 @@ padding: 5px; */
 }
 </style>
 <body>
-   <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    Manage Room
-                </a>
-            </div>
-    <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    Manage Booking
-                </a>
-    </div>
 </head>
 <form id="myForm" action="/infy/addCostumer" method="POST">
  <h1> Update Hotel Management Form</h1> 
@@ -92,26 +84,33 @@ padding: 5px; */
  
  <div class="form-container">
 <label>Please Choose Amenties2:</label>
-<input type="radio"  name="SmokingAvailable" value="Smok"/> Smoking 
-<input type="radio"  name="SmokingAvailable" value="NOSmok"/> Non-Smoking Room<br>
+<input type="radio"  name="SmokingAvailable" value="Smoking"/> Smoking 
+<input type="radio"  name="SmokingAvailable" value="NonSmoking"/> Non-Smoking Room<br>
 </div>
-
 <div class="form-container">
-<label>Please Select Booking From:</label>
-<input type="date" id="fromDate" name="fromDate"value=${fromDate}><br>
+<label>Total Room Availability:</label>
+<input type="text" id="totalRoomAvaliable1" name="totalRoomAvaliable"  value=${totalRoomAvaliabledata}>
 </div>
-
 <div class="form-container">
-<label>Please Select Booking To:</label>
-<input type="date" id="toDate" name="toDate" value=${toDate}><br>
+<label>Total Room Booked:</label>
+<input type="text" id="totalRoomBooked1" name="totalRoomBooked"  value=${totalRoomBookeddata}>
 </div>
-
 <div class="form-container">
 <label>Select Facility: </label>    
               <input type="checkbox" id="WIFI" name="checkdata" value="WIFI"/>WI-FI  
               <input type="checkbox" id="TV" name="checkdata" value="TV"/> TV    
               <input type="checkbox" id="Geyser" name="checkdata" value="Geyser"/> Geyser<br> 
+              </div>
+<!-- </div>
+<div class="form-container">
+<label id="datefrom">Please Select Booking From:</label>
+<input type="date" id="fromDate" name="fromDate"value=${fromDate}><br>
 </div>
+
+<div class="form-container">
+<label id="dateto">Please Select Booking To:</label>
+<input type="date" id="toDate" name="toDate" value=${toDate}><br>
+</div> -->
 
 <div class="form-container">
 <button id="adddata" class="btn btn-dark"type="submit">Update Room</button>
@@ -121,7 +120,7 @@ padding: 5px; */
 </form>
 </body>
 <script type="text/javascript">
-function showMassage(message,duration) {  
+function showMassage(message,duration,colordata) {  
 	var massageElement=document.createElement("div");
 	massageElement.textContent=message;
 	massageElement.style.position="fixed";
@@ -133,7 +132,7 @@ function showMassage(message,duration) {
 	massageElement.style.alignItems="center";
 	massageElement.style.textAlign="center";
 	massageElement.style.padding="10px";
-	massageElement.style.backgroundColor="green";
+	massageElement.style.backgroundColor=colordata;
 	massageElement.style.color="white";
 	massageElement.style.borderRadius="5px";
 	massageElement.style.width="60%";
@@ -151,6 +150,10 @@ var acnonac='<%= request.getAttribute("acnonac") %>';
 var wifitvdata='<%=request.getAttribute("wifitv")%>';
 var roomtypedata='<%=request.getAttribute("roomtypedata")%>';
 console.log("roomtypedata......"+roomtypedata);
+var ts1='<%=request.getAttribute("totalRoomBookeddata")%>';
+var ts2='<%=request.getAttribute("totalRoomBookeddata")%>';
+console.log("totalRoomAvaliable......"+ts1);
+console.log("totalRoomBooked......"+ts2);
 var wifitv=wifitvdata.split(",");
 $(document).ready(function () {
 	var dataList=[];
@@ -198,8 +201,11 @@ var allData={};
 $('#myForm').submit(function(e){
 var submitdata=confirm("Kindly check once Before submiting,Are you sure to submit." );
 	console.log("submitted value"+submitdata);
+	if(submitdata==false) {
+		return false;
+	}
 	
-	var fromdatedata=$('#fromDate').val();
+/* 	var fromdatedata=$('#fromDate').val(); //21/06/2023
 	var todatedata=$('#toDate').val();
 	var  date1 = new Date(fromdatedata);
 	var date2 = new Date(todatedata);
@@ -210,7 +216,7 @@ var submitdata=confirm("Kindly check once Before submiting,Are you sure to submi
 		else if(date1>date2){
 			alert(" toDate Should be Greater then or equals to fromDate");
 			return false;
-		}
+		} */
 		
 	e.preventDefault();
  formdata=$(this).serialize();
@@ -219,22 +225,24 @@ var submitdata=confirm("Kindly check once Before submiting,Are you sure to submi
 		formData:formdata,
 		AmenitiesjsonData};
 		console.log("all the form data:::::::"+JSON.stringify(allData));*/
+		console.log("all the form data:::::::"+allData);
 $.ajax({
 	type :'POST',
 	url:'/infy/addRoomDataforUpdate',
 	contentType:'application/json;charset=utf-8',
 	 data:JSON.stringify({
-		formData:formdata,
+		formData:allData,
 		AmenitiesjsonData:AmenitiesjsonData
 	 }),
 	success: function(result) {
       console.log("DataUpdatePage value addded:::::"+result); 
       if(result ==='updateData') {
-			showMassage("Room data Updated SucessFully",5000);
+			showMassage("Room data Updated SucessFully",5000,"green");
       }
 	},
      error:function(xhr,status,error){
 		console.error(error);
+		showMassage("Error occured While Updating RoomData,Please Contact Admin",5000,"red");
        }
 });
 });
@@ -243,11 +251,25 @@ $.ajax({
 var AmenitiesjsonData={};
 $('#adddata').click(function(e){
 	var amentis= {};
+	var amentisAllData= {};
 	var CheckValue=[];
 	var radioValue=$('input[name="SmokingAvailable"]:checked').val();
 	var ACValue=$('input[name="isACRoom"]:checked').val();
 	var rmtype=$("#mycombo").val();
+	var totalRoomAvaliable=$("#totalRoomAvaliable1").val();
+	var totalRoomBooked=$("#totalRoomBooked1").val();
 	var price=$("#price").val();
+	var roomid=$("#roomid").val();
+	console.log("totalRoomAvaliable"+totalRoomAvaliable);
+	console.log("totalRoomBooked"+totalRoomBooked);
+	amentisAllData.roomid=roomid;
+	amentisAllData.roomType=rmtype;
+	amentisAllData.price=price;
+	amentisAllData.isACAvailable=ACValue;
+	amentisAllData.isSmokingAvailable=radioValue;
+	amentisAllData.totalRoomAvaliable=totalRoomAvaliable;
+	amentisAllData.totalRoomBooked=totalRoomBooked;
+	
 if(rmtype==""){
 	alert("please select a RoomType");
 	return false;
@@ -275,11 +297,13 @@ else if(radioValue=="" || typeof radioValue==="undefined"){
 			$('input[name="checkdata"]:checked').each(function(){
 				CheckValue.push($(this).val());
 			});
-			amentis.checkboxes=	CheckValue;
+			amentis.amenties=CheckValue;
 			AmenitiesjsonData=JSON.stringify(amentis);
+			allData=JSON.stringify(amentisAllData);
 			console.log(" Amenities jSONData::::::::::"+AmenitiesjsonData);
+			console.log("FormData in jSON::::::::::"+allData);
 });
-$('#fromDate').on('change', function() {
+/* $('#fromDate').on('change', function() {// this code disable the previous date of selected toDate and vice-versa.//21/06/2023
 	var fromDate = $('#fromDate').val().trim();
 	$('#toDate').attr('min',fromDate);
 	$('#Hotel').DataTable().draw();
@@ -289,7 +313,7 @@ $('#fromDate').on('change', function() {
 	var toDate = $('#toDate').val().trim();
 	$('#fromDate').attr('max',toDate);
 	$('#Hotel').DataTable().draw();
-	});
+	}); */
 });
 </script>
 </html>

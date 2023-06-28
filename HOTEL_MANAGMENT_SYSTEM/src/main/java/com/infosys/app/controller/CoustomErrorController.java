@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CoustomErrorController implements ErrorController{
 @RequestMapping("/error")
 public String handelError() {
-	return "bookHotel";
+	return "error in code";
 	
 }
 }

@@ -2,8 +2,6 @@ package com.infosys.app.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -14,8 +12,16 @@ public class RoomType {
 //@GeneratedValue(strategy = GenerationType.AUTO)
 @Column(name="room_type_id")
 private Integer roomTypeId;
-@Column(name="room type")
+@Column(name="roomtype")
 private String roomType;
+
+/*
+ * @Column(name="totalRoomAvaliable") private int totalRoomAvaliable;
+ * 
+ * @Column(name="totalRoomBooked") private int totalRoomBooked;
+ */
+
+
 @Override
 public String toString() {
 	return "RoomType [roomTypeId=" + roomTypeId + ", roomType=" + roomType + "]";

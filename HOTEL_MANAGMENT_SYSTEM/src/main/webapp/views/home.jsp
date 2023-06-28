@@ -16,66 +16,54 @@ src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script>
 href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 <link rel="stylesheet" type="text/css"
 href="https://cdn.datatables.net/1.10.16/css/dataTables.jqueryui.min.css" />
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/> 
- <style>
- td,th{text-align:center}
- </style>
- </head>
-<body>
-<h1>HOTEL MANAGMENT SYSTEM</h1>
-<a href="/infy/addCostumer">click here</a>
-<table id="Hotel" class="table table-bordered table-striped"style="width: 100%">
-<thead>
-	<tr>
-		<th>Room Type</th>
-		<th>Price</th>
-		<th>Action</th>
-	</tr>
-</thead>
-<tbody>
-
-</tbody>
-</table>
-<script>
-function fun(){
-	alert("hi i am here:::");
-	window.location.href = "/infy/UpdatePage";
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0px;
+  overflow: hidden;
+  background-color: lightgray;
 }
-</script>
-<script>
-$(document).ready(function () {
-	$('#Hotel').DataTable(); 
-	var dataList=[];
-	$.ajax({
-		type :'GET',
-		url:'/infy/fetchAllRoooms',
-		success: function(result) {
-          console.log("value addded:::::"+result);
-          dataList=result;
-          console.log("value addded:::::"+dataList)
-       for (var i=0;i<dataList.length; i++) { 
-       var roomType = dataList[i]; 
-       console.log(roomType.price);
-       var pricedata=roomType.price;
-       var roomtypedata=roomType.roomtypedata;
-       var row=$('<tr>');
-       row.append($('<td>').text(roomtypedata));
-       row.append($('<td>').text(pricedata));
-       row.append($('<td id="add"><button  type="submit" onclick="fun()" Style=background:blue>Edit / Delete</button></td>'));
-       
-       $('#Hotel tbody').append(row);
-       }
-		},
-         error:function(xhr,status,error){
-			console.error(error);
-           }
-		
-	});
-	/*var data= ${PriceType};
-	/var x=data.replace('RoomPriceTypeDto','');
-	console.log("datattttata"+x);*/
-	  
-});
-</script>
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+ font-size:20px;
+  text-align: center;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+.active{
+ background-color:#33ffff;
+color: white;
+}
+li a:hover {
+  background-color: green;
+  color: white;
+}
+</style>
+</head>
+<body>
+<h2>HOTEL MANAGMENT SYSTEM</h2>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="http://localhost:8084/infy/ManageRoom">Manage Room</a>
+        </li>
+        <li class="nav-item">
+          <a id="bookmanage"class="nav-link active" href="http://localhost:8084/infy/ManageBooking">Manage Booking</a>
+        </li>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
 </body>
 </html>

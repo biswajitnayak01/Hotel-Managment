@@ -10,6 +10,35 @@ public class RoomPriceTypeDto {
 	private  String  roomtypedata;
 	private String isACAvailable;
 	private String isSmokingAvailable;
+	private String fromDate;
+	private String toDate;
+	private int totalRoomAvaliable;
+	private int totalRoomBooked;
+	public int getTotalRoomAvaliable() {
+		return totalRoomAvaliable;
+	}
+	public void setTotalRoomAvaliable(int totalRoomAvaliable) {
+		this.totalRoomAvaliable = totalRoomAvaliable;
+	}
+	public int getTotalRoomBooked() {
+		return totalRoomBooked;
+	}
+	public void setTotalRoomBooked(int totalRoomBooked) {
+		this.totalRoomBooked = totalRoomBooked;
+	}
+	
+	public String getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(String fromDate) {
+		this.fromDate = fromDate;
+	}
+	public String getToDate() {
+		return toDate;
+	}
+	public void setToDate(String toDate) {
+		this.toDate = toDate;
+	}
 	public String getIsACAvailable() {
 		return isACAvailable;
 	}
@@ -35,17 +64,12 @@ public class RoomPriceTypeDto {
 	public void setRoomtypedata(String roomtypedata) {
 		this.roomtypedata = roomtypedata;
 	}
-
-	/*
-	 * public RoomType getRoomtype() { return roomtype; } public void
-	 * setRoomtype(RoomType roomtype) { this.roomtype = roomtype; }
-	 */
-
 	@Override
 	public String toString() {
 		return "RoomPriceTypeDto [price=" + price + ", id=" + id + ", roomtype=" + roomtype + ", roomtypedata="
 				+ roomtypedata + ", isACAvailable=" + isACAvailable + ", isSmokingAvailable=" + isSmokingAvailable
-				+ ", amenties=" + amenties + "]";
+				+ ", fromDate=" + fromDate + ", toDate=" + toDate + ", totalRoomAvaliable=" + totalRoomAvaliable
+				+ ", totalRoomBooked=" + totalRoomBooked + ", amenties=" + amenties + "]";
 	}
 	public String getPrice() {
 		return price;
