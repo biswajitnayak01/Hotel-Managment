@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.infosys.app.entity.RoomType;
@@ -26,4 +27,11 @@ public List<String> fetchRoomType() throws RoomTypeCostumException {
 	logger.info("fetching roomType Data from DB:::"+roomtypedata);
 	return roomtypedata;
 }
+
+
+@GetMapping("/getRoomTypeAllData")// collect RoomData From Dynamic DB
+public RoomType getRoomTypeAllData(@RequestParam("roomtype")String roomtype){
+	return rs.getRoomDeatilsAll(roomtype);
 }
+}
+ 

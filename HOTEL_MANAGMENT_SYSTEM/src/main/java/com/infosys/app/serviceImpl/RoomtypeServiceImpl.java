@@ -13,6 +13,19 @@ public class RoomtypeServiceImpl implements RoomTypeService{
 @Autowired
 RoomTypeRepository rt;
 public List<RoomType> getRoomDeatils(){
+	logger.info("RoomtypeServiceImpl::::getRoomDeatils()::RoomType::"+rt.findAll());
 	return rt.findAll();	
+}
+@Override
+public RoomType getRoomDeatilsAll(String roomtype) {
+	RoomType rty = null;
+	
+	try {
+		 rty=rt.findByRoomType(roomtype);
+		 logger.info("RoomtypeServiceImpl::::getRoomDeatilsAll()::RoomTypeALL::"+rty);
+	}catch(Exception ex) {
+		ex.printStackTrace();
+	}
+	return rty;
 }
 }

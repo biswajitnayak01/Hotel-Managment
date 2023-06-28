@@ -23,16 +23,49 @@ public class Rooms {
 	private Integer roomId;
 	@Column(name = "price")
 	private Integer price;
-
 	@Column(name = "isACAvailable")
 	private String isACAvailable;
 	@Column(name = "isSmokingAvailable")
 	private String isSmokingAvailable;
 	@Column(name = "amenties", columnDefinition = "TEXT")
 	private String amenties;
+	@Column(name="totalRoomAvaliable")
+	private int totalRoomAvaliable;
+	@Column(name="totalRoomBooked")
+	private int totalRoomBooked;
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "room_type_id")
 	private RoomType roomType;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="bookingDetailsId")
+    private BookingDetails bookDetails;
+
+	public Rooms() {
+	}
+
+	public int getTotalRoomAvaliable() {
+		return totalRoomAvaliable;
+	}
+
+	public void setTotalRoomAvaliable(int totalRoomAvaliable) {
+		this.totalRoomAvaliable = totalRoomAvaliable;
+	}
+
+	public int getTotalRoomBooked() {
+		return totalRoomBooked;
+	}
+
+	public void setTotalRoomBooked(int totalRoomBooked) {
+		this.totalRoomBooked = totalRoomBooked;
+	}
+
+	public BookingDetails getBookDetails() {
+		return bookDetails;
+	}
+
+	public void setBookDetails(BookingDetails bookDetails) {
+		this.bookDetails = bookDetails;
+	}
 
 	public Integer getPrice() {
 		return price;
@@ -53,8 +86,9 @@ public class Rooms {
 	@Override
 	public String toString() {
 		return "Rooms [roomId=" + roomId + ", price=" + price + ", isACAvailable=" + isACAvailable
-				+ ", isSmokingAvailable=" + isSmokingAvailable + ", amenties=" + amenties + ", roomType=" + roomType
-				+ "]";
+				+ ", isSmokingAvailable=" + isSmokingAvailable + ", amenties=" + amenties + ", totalRoomAvaliable="
+				+ totalRoomAvaliable + ", totalRoomBooked=" + totalRoomBooked + ", roomType=" + roomType
+				+ ", bookDetails=" + bookDetails + "]";
 	}
 
 	public Integer getRoomId() {
