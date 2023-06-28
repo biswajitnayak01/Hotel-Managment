@@ -110,7 +110,7 @@ display:none;
 
 <script> 
 
-$(document).ready(function(){ // collect Room Type Data From Dynamic DB(RoomsController.java)
+$(document).ready(function(){ // collects Room Type Data From Dynamic DB(RoomsController.java)
 	
 	var dataList=[];
 	$.ajax({

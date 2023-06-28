@@ -24,6 +24,7 @@ href="https://cdn.datatables.net/1.10.16/css/dataTables.jqueryui.min.css" />
 	 .rm,#roomid,.tra,.trb,#totalRoomAvaliable,#totalRoomBooked{
 	 display:none
 	 }
+	 
  </style>
  </head>
 <body>

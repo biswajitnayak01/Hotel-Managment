@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>  data deleted Sucessfully</h1>
+<h1>  data deleted Sucessfully.</h1>
 </body>
 </html>

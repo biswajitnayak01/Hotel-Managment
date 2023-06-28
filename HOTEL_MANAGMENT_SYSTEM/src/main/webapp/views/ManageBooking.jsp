@@ -18,6 +18,7 @@ href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 href="https://cdn.datatables.net/1.10.16/css/dataTables.jqueryui.min.css" />
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
  
+ 
  <style>
  #fromDate,#toDate{/* 21/06/2023 */
  display:none;

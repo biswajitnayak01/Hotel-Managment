@@ -27,7 +27,7 @@ public List<String> fetchRoomType() throws RoomTypeCostumException {
 	logger.info("fetching roomType Data from DB:::"+roomtypedata);
 	return roomtypedata;
 }
-
+ 
 
 @GetMapping("/getRoomTypeAllData")// collect RoomData From Dynamic DB
 public RoomType getRoomTypeAllData(@RequestParam("roomtype")String roomtype){

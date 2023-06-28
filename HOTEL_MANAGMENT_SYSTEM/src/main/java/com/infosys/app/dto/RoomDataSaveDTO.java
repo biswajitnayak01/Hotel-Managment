@@ -7,6 +7,7 @@ public class RoomDataSaveDTO {
 	private String isSmokingAvailable;
 	private int totalRoomAvaliable;
 	private int totalRoomBooked;
+	
 	public int getRoomid() {
 		return roomid;
 	}

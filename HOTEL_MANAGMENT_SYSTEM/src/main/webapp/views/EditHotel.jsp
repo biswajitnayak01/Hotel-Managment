@@ -79,7 +79,7 @@ padding: 5px; */
 <div class="form-container">
 <label>  Please Choose Amenties1:</label>  
 <input type="radio"id="isACRoom" name="isACRoom" value="AC"/>AC    
- <input type="radio"  name="isACRoom" value="NONAC"/> NON-AC  <br>
+ <input type="radio"  name="isACRoom" value="NONAC"/> NON-AC <br>
  </div>
  
  <div class="form-container">

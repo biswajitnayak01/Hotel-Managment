@@ -38,6 +38,7 @@ public class RoomsServiceImpl implements RoomsService {
 	@Autowired
 	EntityManager entitymanager;
 
+	
 	@Override
 	public List<RoomPriceTypeDto> fetchAllRoomData() {
 		try {
