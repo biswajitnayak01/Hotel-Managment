@@ -305,7 +305,7 @@ $(document).ready(function () {
 			success: function(result) {
 	          console.log("value addded:::::"+result);
 	          if(result==""){
-	        	  showMassage("filter-data not found in DB please provide different input",3000);  
+	        	  showMassage("filter-data not found in DB please provide different input",3000,"red");  
 	          }
 	          dataList=result;
 	          console.log("value addded:::::"+dataList)

@@ -21,6 +21,7 @@ href="https://cdn.datatables.net/1.10.16/css/dataTables.jqueryui.min.css" />
  td,th{text-align:center}
  </style>
  </head>
+ 
 <body>
 <h1>HOTEL MANAGMENT SYSTEM</h1>
 

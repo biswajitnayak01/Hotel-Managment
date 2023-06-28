@@ -66,6 +66,7 @@ public String deleteRoomData(@RequestParam("roomid")String roomId,@RequestParam(
 	logger.info("DeleteRoomDetails DeleteRoomDetails:::::::::roomType::::::"+roomId+"roomType:::"+roomType);
 	//return "DeletePage";
 	return data;
+	
 }
 
 @PostMapping("/editroomdetails")

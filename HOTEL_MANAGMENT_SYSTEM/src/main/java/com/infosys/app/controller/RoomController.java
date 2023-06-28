@@ -25,7 +25,7 @@ import com.infosys.app.service.RoomsService;
 public class RoomController {
 	@Autowired
 	RoomsService roomService;
-	RoomsTypeController rc;
+	RoomsTypeController rc; 
 	Logger logger = LoggerFactory.getLogger(RoomController.class);
 	/*
 	 * @GetMapping("/addCostumer") public void bookCostumer(HttpServletResponse
