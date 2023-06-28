@@ -24,7 +24,6 @@ href="https://cdn.datatables.net/1.10.16/css/dataTables.jqueryui.min.css" />
 	 .rm,#roomid,.tra,.trb,#totalRoomAvaliable,#totalRoomBooked{
 	 display:none
 	 }
-	 
  </style>
  </head>
 <body>
@@ -54,7 +53,7 @@ RoomType:<select id="mycombo" name="roomtype"></select>
 </tbody>
 </table>
 
-<button  type="submit"  onclick="addRoom()" Style=background:blue>Add Room</button>
+<button  type="submit"  onclick="addRoom()" class="btn btn-primary">Add Room</button>
 <script>
 
 
@@ -199,10 +198,11 @@ function editdata(value){
 		}
 }
 function addRoom(){
-	var rmval= confirm("do you want to add new Room Data");
-	if(rmval==true) {
 	window.location.href = "/infy/addCostumer";
-	}
+	/* var rmval= confirm("do you want to add new Room Data");
+	if(rmval==true) {
+		window.location.href = "/infy/addCostumer";
+	} */
 	
 }
 /* function refreshTable(){
@@ -380,6 +380,8 @@ $(document).ready(function () {
 		},
          error:function(xhr,status,error){
 			console.error(error);
+			showMassage("Error occured while fetching room record,Please contact admin",5000,"red");
+			
            }
 		
 	});

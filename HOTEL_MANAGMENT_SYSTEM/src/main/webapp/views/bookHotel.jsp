@@ -34,7 +34,12 @@ body{
  h1{
  text-align:left
  }
- 
+   #back{
+position:absolute;
+bottom:20px;
+left:45%;
+transform: translateX(-50%);
+ }
  #adddata{
 position:absolute;
 bottom:20px;
@@ -106,11 +111,16 @@ display:none;
 <button id="adddata" class="btn btn-dark" type="submit">ADD ROOM</button>
 </div>
 </form>
+
+<div class="form-container1">
+<button id="back" class="btn btn-dark">HOME</button>
+</div>
+
 </body>
 
 <script> 
 
-$(document).ready(function(){ // collects Room Type Data From Dynamic DB(RoomsController.java)
+$(document).ready(function(){ // collect Room Type Data From Dynamic DB(RoomsController.java)
 	
 	var dataList=[];
 	$.ajax({
@@ -194,11 +204,12 @@ $(document).ready(function(){ // collects Room Type Data From Dynamic DB(RoomsCo
           console.log("value addded for ADD Data:::::"+result);
           
           if(result ==='ADDROOM') {
-  			showMassage("new room record added sucessFully",5000);
+  			showMassage("new room record added sucessFully",5000,"green");
         }
           //window.location.href = "/infy/SuccessAddPage";
 		},
          error:function(xhr,status,error){
+        	 showMassage("Error occured while updating room record,Please contact admin",5000,"red");
 			console.error(error);
            }
 	});
@@ -273,8 +284,10 @@ $(document).ready(function(){ // collects Room Type Data From Dynamic DB(RoomsCo
 		$('#Hotel').DataTable().draw();
 		}); */
 });
-
-function showMassage(message,duration) {  
+$('#back').click(function(e){
+	window.location.href = "http://localhost:8084/infy/ManageRoom";
+});
+function showMassage(message,duration,colordata) {  
 	var massageElement=document.createElement("div");
 	massageElement.textContent=message;
 	massageElement.style.position="fixed";
@@ -286,7 +299,7 @@ function showMassage(message,duration) {
 	massageElement.style.alignItems="center";
 	massageElement.style.textAlign="center";
 	massageElement.style.padding="10px";
-	massageElement.style.backgroundColor="green";
+	massageElement.style.backgroundColor=colordata;
 	massageElement.style.color="white";
 	massageElement.style.borderRadius="5px";
 	massageElement.style.width="60%";

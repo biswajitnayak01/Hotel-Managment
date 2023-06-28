@@ -33,7 +33,7 @@ body{
  }
  
  h1{
- text-align:left
+ text-align:left;
  }
  #roomid,#rmo,#dateto,#datefrom,#fromDate,#toDate{/* 21/06/2023 */
  display:none;
@@ -42,6 +42,13 @@ body{
 position:absolute;
 bottom:1px;
 left:25%;
+transform: translateX(-50%);
+ }
+ 
+  #back{
+position:absolute;
+bottom:1px;
+left:45%;
 transform: translateX(-50%);
  }
  
@@ -79,7 +86,7 @@ padding: 5px; */
 <div class="form-container">
 <label>  Please Choose Amenties1:</label>  
 <input type="radio"id="isACRoom" name="isACRoom" value="AC"/>AC    
- <input type="radio"  name="isACRoom" value="NONAC"/> NON-AC <br>
+ <input type="radio"  name="isACRoom" value="NONAC"/> NON-AC  <br>
  </div>
  
  <div class="form-container">
@@ -115,9 +122,14 @@ padding: 5px; */
 <div class="form-container">
 <button id="adddata" class="btn btn-dark"type="submit">Update Room</button>
 </div>
-
-
 </form>
+
+
+<div class="form-container1">
+<button id="back" class="btn btn-dark">HOME</button>
+</div>
+
+
 </body>
 <script type="text/javascript">
 function showMassage(message,duration,colordata) {  
@@ -302,6 +314,10 @@ else if(radioValue=="" || typeof radioValue==="undefined"){
 			allData=JSON.stringify(amentisAllData);
 			console.log(" Amenities jSONData::::::::::"+AmenitiesjsonData);
 			console.log("FormData in jSON::::::::::"+allData);
+});
+
+$('#back').click(function(e){
+	window.location.href = "http://localhost:8084/infy/ManageRoom";
 });
 /* $('#fromDate').on('change', function() {// this code disable the previous date of selected toDate and vice-versa.//21/06/2023
 	var fromDate = $('#fromDate').val().trim();
